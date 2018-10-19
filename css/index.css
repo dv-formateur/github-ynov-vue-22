@@ -1,0 +1,20 @@
+header{
+    background: green;
+    padding-top:15px;
+    padding-bottom:15px;
+    text-align: center;
+    color:white;
+}
+.row{
+    margin-top: 15px;
+}
+#itemGit{
+    background: green;
+    color:white;
+}
+li{
+    list-style-type: none;  
+}
+#buttonCommit{
+    margin-top: 15px;
+}
