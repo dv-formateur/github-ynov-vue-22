@@ -25,6 +25,7 @@ var app = new Vue({
                     monProjet.login=projet.owner.login
                     monProjet.url = projet.owner.url
                     monProjet.nomProjet = projet.name
+                    monProjet.tab=[]
                     fetch("https://api.github.com/repos/"+projet.full_name+"/commits",{
                         headers: {
                             "Authorization": ""
@@ -37,7 +38,7 @@ var app = new Vue({
                             data.forEach((response)=>{
                                 // var monCommit= new Object();
                                 // monCommit.message = response.commit.message
-                                arrayCommits.push(response.commit.message)
+                                monProjet.tab.push(response.commit.message)
                             })
                             monProjet.myCommits=arrayCommits
                         })
