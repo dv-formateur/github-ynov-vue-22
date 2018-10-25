@@ -1,5 +1,5 @@
 header{
-    background: green;
+    background: #343a40;
     padding-top:15px;
     padding-bottom:15px;
     text-align: center;
@@ -12,9 +12,17 @@ header{
     background: green;
     color:white;
 }
-li{
-    list-style-type: none;  
+#tabProjetsInit thead{
+    text-align: center;
 }
-#buttonCommit{
-    margin-top: 15px;
+#foldItems{
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+#tabProjetsInit img{
+    width:30px;
+    height:30px;
+}
+#tabProjetsInit table tbody tr:nth-child(1){
+    text-align: center;
 }
