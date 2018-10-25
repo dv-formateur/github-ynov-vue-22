@@ -5,10 +5,10 @@ var app = new Vue({
     nameUser: "",
     dateDebut: "",
     dateEnded: "",
-    name: "Vue.js",
-    nameprojects: ["Select project(s)", "github-ynov-vue"],
+    nameprojects: [" ", "github-ynov-vue"],
     projects: [],
     users: [
+      " ",
       "mathiasLoiret",
       "Mokui",
       "etienneYnov",
@@ -35,7 +35,9 @@ var app = new Vue({
       "KevinPautonnier",
       "AntoineGOSSET"
     ],
-    tabProjects: []
+    tabProjects: [],
+    listAfterSearch: false,
+    listTabInit: true
   },
   methods: {
     reinit: function() {
@@ -58,6 +60,7 @@ var app = new Vue({
               monProjet.nomProjet = projet.name;
               monProjet.avatar = projet.owner.avatar_url;
               monProjet.tab = [];
+
               fetch(
                 "https://api.github.com/repos/" + projet.full_name + "/commits",
                 {
@@ -70,7 +73,14 @@ var app = new Vue({
                 .then(response => response.json())
                 .then(data => {
                   data.forEach(response => {
-                    monProjet.tab.push(response.commit.message);
+                    var monCommit = new Object();
+                    var dateCommit = response.commit.author.date,
+                      dateCommitNewFormat = moment(dateCommit).format(
+                        "YYYY-MM-DD"
+                      );
+                    monCommit.message = response.commit.message;
+                    monCommit.date = dateCommitNewFormat;
+                    monProjet.tab.push(monCommit);
                   });
                 });
               this.tabProjects.push(monProjet);
@@ -83,10 +93,7 @@ var app = new Vue({
       var nameUser = this.selectUser;
       var dateDebut = this.datebegin;
       var dateFin = this.dateEnded;
-      
-      if (nameProject==""){
-        console.log("Vide project")
-      }
+      this.tabProjects = [];
       fetch("https://api.github.com/search/repositories?q=" + nameProject, {
         headers: {
           Authorization: "Basic cnVkeTg1MzA6QXUhMDIyODEwNTgyNA=="
@@ -98,7 +105,6 @@ var app = new Vue({
           this.projects = data.items;
           this.projects.forEach(projet => {
             if (projet.owner.login == nameUser) {
-              //Les commits,
               var monProjet = new Object();
               monProjet.login = projet.owner.login;
               monProjet.url = projet.owner.html_url;
@@ -118,14 +124,28 @@ var app = new Vue({
                 .then(data => {
                   var arrayCommits = [];
                   data.forEach(response => {
-                    monProjet.tab.push(response.commit.message);
+                    var monCommit = new Object();
+                    var dateCommit = response.commit.author.date,
+                      dateCommitNewFormat = moment(dateCommit).format(
+                        "YYYY-MM-DD"
+                      );
+                    if (
+                      dateCommitNewFormat >= dateDebut &&
+                      dateCommitNewFormat <= dateFin
+                    ) {
+                      monCommit.message = response.commit.message;
+                      monCommit.date = dateCommitNewFormat;
+                      monProjet.tab.push(monCommit);
+                    }
                   });
                 });
               this.tabProjects.push(monProjet);
-              console.log(monProjet);
+              this.listTabInit = false;
+              this.listAfterSearch = true;
               return;
             }
           });
+          console.log(this.tabProjects);
         });
     }
   },

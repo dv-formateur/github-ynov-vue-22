@@ -19,10 +19,10 @@ header{
     margin-bottom: 20px;
     margin-top: 20px;
 }
-#tabProjetsInit img{
+#tabProjetsInit img, #tabProjetsResult img{
     width:30px;
     height:30px;
 }
-#tabProjetsInit table tbody tr:nth-child(1){
+#tabProjetsInit table tbody tr:nth-child(1),#tabProjetsResult table tbody tr:nth-child(1){
     text-align: center;
 }
