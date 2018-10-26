@@ -57,6 +57,7 @@ var app = new Vue({
               monProjet.login = projet.owner.login;
               monProjet.url = projet.owner.html_url;
               monProjet.nomProjet = projet.name;
+              monProjet.urlReadMe = "https://github.com/"+projet.owner.login+"/"+projet.name+"/blob/master/README.md"
               monProjet.avatar = projet.owner.avatar_url;
               monProjet.tab = [];
 
@@ -151,5 +152,6 @@ var app = new Vue({
   },
   mounted() {
     this.reinit();
+    console.log(this.tabProjects)
   }
 });

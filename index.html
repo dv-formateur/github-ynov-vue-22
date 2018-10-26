@@ -36,27 +36,28 @@
                     </div>
                 </form>
                 <div class="d-flex justify-content-center">
-                    <button @click="search" type="submit" class="btn btn-primary" value="Submit">Submit</button>
-                    <button @click="reinit" type="button" class="btn btn-warning">Reinitialisation</button>
+                    <button id="submitButton" @click="search" type="submit" class="btn btn-primary" value="Submit">Submit</button>
                 </div>
             </div>
             <div v-if="listAfterSearch" id="tabProjetsResult" class="col-md-9 col-sm-6">
-                <table class="table table-hover">
+                <table class="table">
                     <thead>
                         <tr class="table-primary">
                             <th>Icon</th>
                             <th>Login</th>
                             <th>Giturl</th>
+                            <th>Readme</th>
                         </tr>
                     </thead>
                     <tbody v-for="project in tabProjects">
                         <tr>
                             <th><img :src="project.avatar"></th>
                             <td>{{project.login}}</td>
-                            <td><a :href="project.url">{{project.url}}</a></td>
+                            <td><a :href="project.url">Link</a></td>
+                            <td><button :href="project.urlReadMe" type="button" class="btn btn-success"><a :href="project.urlReadMe">Read</a></button></td>
                         </tr>
                         <tr>
-                            <td colspan="5">
+                            <td colspan="4">
                                 <h5>{{project.nomProjet}}</h5>
                                 <ul>
                                     <li v-for="commit in project.tab">{{commit.date}} - {{commit.message}}</li>
@@ -67,22 +68,24 @@
                 </table>
             </div>
             <div v-if="listTabInit" id="tabProjetsInit" class="col-md-9 col-sm-6">
-                <table class="table table-hover">
+                <table class="table">
                     <thead>
                         <tr class="table-primary">
                             <th>Icon</th>
                             <th>Login</th>
                             <th>Giturl</th>
+                            <th>Readme</th>
                         </tr>
                     </thead>
                     <tbody v-for="project in tabProjects">
                         <tr>
                             <th><img :src="project.avatar"></th>
                             <td>{{project.login}}</td>
-                            <td><a :href="project.url">{{project.url}}</a></td>
+                            <td><a :href="project.url">Link</a></td>
+                            <td><button :href="project.urlReadMe" type="button" class="btn btn-success"><a :href="project.urlReadMe">Read</a></button></td>
                         </tr>
                         <tr>
-                            <td colspan="5">
+                            <td colspan="4">
                                 <h5>{{project.nomProjet}}</h5>
                                 <ul>
                                     <li v-for="commit in project.tab">{{commit.date}} - {{commit.message}}</li>

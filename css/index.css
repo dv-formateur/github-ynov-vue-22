@@ -16,8 +16,8 @@ header{
     text-align: center;
 }
 #foldItems{
-    margin-bottom: 20px;
-    margin-top: 20px;
+    margin-bottom: 30px;
+    margin-top: 30px;
 }
 #tabProjetsInit img, #tabProjetsResult img{
     width:30px;
@@ -25,4 +25,15 @@ header{
 }
 #tabProjetsInit table tbody tr:nth-child(1),#tabProjetsResult table tbody tr:nth-child(1){
     text-align: center;
+}
+#submitButton{
+    margin-bottom: 20px;
+}
+table tbody tr td button a{
+    color:white;
+    text-decoration: none;
+}
+table tbody tr td button a:hover{
+    color:white;
+    text-decoration: none;
 }
