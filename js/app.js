@@ -1,14 +1,13 @@
 var app = new Vue({
   el: "#app",
   data: {
-    selectProject: "",
-    nameUser: "",
-    dateDebut: "",
+    selectProject: "dfsdf",
+    selectUser: "",
+    datebegin: "",
     dateEnded: "",
-    nameprojects: [" ", "github-ynov-vue"],
+    nameprojects: ["github-ynov-vue"],
     projects: [],
     users: [
-      " ",
       "mathiasLoiret",
       "Mokui",
       "etienneYnov",
@@ -87,6 +86,8 @@ var app = new Vue({
             });
           });
       });
+      this.datebegin='2018-10-10'
+      this.dateEnded='2018-10-26'
     },
     search: function() {
       var nameProject = this.selectProject;
@@ -145,7 +146,6 @@ var app = new Vue({
               return;
             }
           });
-          console.log(this.tabProjects);
         });
     }
   },

@@ -23,43 +23,30 @@
                     <div class="form-group">
                         <label for="selectProject">Select your project</label>
                         <select v-model="selectProject" class="form-control" id="selectProject">
-                            <option multiple class="form-control" id="selectproject" v-for="project in nameprojects"
-                                :value="project">{{project}}</option>
+                            <option multiple class="form-control" id="selectproject" v-for="project in nameprojects">{{project}}</option>
                         </select>
                         <label for="selectUser">Select user(s)</label>
                         <select v-model="selectUser" class="form-control" id="selectUser">
                             <option multiple class="form-control" id="selectUser" v-for="user in users">{{user}}</option>
                         </select>
                         <label for="datebegin" class="col-form-label">Date début</label>
-                        <input v-model="datebegin" class="form-control" type="date" value="2011-08-19" id="datebegin">
+                        <input v-model="datebegin" class="form-control" type="date" id="datebegin">
                         <label for="dateEnded" class="col-form-label">Date début</label>
                         <input v-model="dateEnded" class="form-control" type="date" value="2011-08-19" id="dateEnded">
                     </div>
                 </form>
-                <!-- <div class="d-flex justify-content-center" id="foldItems">
-                    <div class="col-sm-6 col-md-3">
-                        <input type="checkbox" class="form-check-input" id="fold">
-                        <label class="form-check-label" for="fold">Fold</label>
-                    </div>
-                    <div class="col-sm-6 col-md-3">
-                        <input type="checkbox" class="form-check-input" id="fold">
-                        <label class="form-check-label" for="fold">UnFold</label>
-                    </div>
-                </div> -->
                 <div class="d-flex justify-content-center">
                     <button @click="search" type="submit" class="btn btn-primary" value="Submit">Submit</button>
                     <button @click="reinit" type="button" class="btn btn-warning">Reinitialisation</button>
                 </div>
             </div>
-            <div v-if="listAfterSearch" id="tabProjetsResult" class="col-9">
+            <div v-if="listAfterSearch" id="tabProjetsResult" class="col-md-9 col-sm-6">
                 <table class="table table-hover">
                     <thead>
                         <tr class="table-primary">
-                            <th scope="col-1">Icon</th>
-                            <th scope="col-1">Login</th>
-                            <th scope="col-1">Giturl</th>
-                            <th scope="col-1">Projet</th>
-                            <th scope="col-1"># of Commits</th>
+                            <th>Icon</th>
+                            <th>Login</th>
+                            <th>Giturl</th>
                         </tr>
                     </thead>
                     <tbody v-for="project in tabProjects">
@@ -67,28 +54,25 @@
                             <th><img :src="project.avatar"></th>
                             <td>{{project.login}}</td>
                             <td><a :href="project.url">{{project.url}}</a></td>
-                            <td>{{project.nomProjet}}</td>
-                            <td>{{project.tab.length}}</td>
                         </tr>
                         <tr>
                             <td colspan="5">
+                                <h5>{{project.nomProjet}}</h5>
                                 <ul>
-                                    <li v-for="commit in project.tab">{{commit.message}}</li>
+                                    <li v-for="commit in project.tab">{{commit.date}} - {{commit.message}}</li>
                                 </ul>
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-            <div v-if="listTabInit" id="tabProjetsInit" class="col-9">
+            <div v-if="listTabInit" id="tabProjetsInit" class="col-md-9 col-sm-6">
                 <table class="table table-hover">
                     <thead>
                         <tr class="table-primary">
-                            <th scope="col-1">Icon</th>
-                            <th scope="col-1">Login</th>
-                            <th scope="col-1">Giturl</th>
-                            <th scope="col-1">Projet</th>
-                            <th scope="col-1"># of Commits</th>
+                            <th>Icon</th>
+                            <th>Login</th>
+                            <th>Giturl</th>
                         </tr>
                     </thead>
                     <tbody v-for="project in tabProjects">
@@ -96,11 +80,10 @@
                             <th><img :src="project.avatar"></th>
                             <td>{{project.login}}</td>
                             <td><a :href="project.url">{{project.url}}</a></td>
-                            <td>{{project.nomProjet}}</td>
-                            <td>{{project.tab.length}}</td>
                         </tr>
                         <tr>
                             <td colspan="5">
+                                <h5>{{project.nomProjet}}</h5>
                                 <ul>
                                     <li v-for="commit in project.tab">{{commit.date}} - {{commit.message}}</li>
                                 </ul>
